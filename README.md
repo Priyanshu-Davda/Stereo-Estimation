@@ -14,12 +14,24 @@ This project provides a set of Python scripts for stereo vision processing using
 - `target.py`: Utility or target generation script.
 - `test.py`: For testing components or debugging.
 
+
+Sample Flow :
+Stereo video → Frame Extraction → Stereo Calibration → Rectification → Disparity → Depth Map
+Install dependencies:
 ## 🛠 Requirements
 
-- Python 3.x
-- OpenCV (`cv2`)
+- Python 3.10
+- OpenCV (contrib version)
 - NumPy
 
 Install dependencies:
+
 ```bash
-pip install opencv-python numpy
+pip install opencv-contrib-python numpy
+
+
+
+
+
+
+
