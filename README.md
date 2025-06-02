@@ -1,27 +1,48 @@
-# Stereo Vision Toolkit
+## Stereo Vision Pipeline using OpenCV
 
-This project provides a set of Python scripts for stereo vision processing using OpenCV. It covers key components like camera calibration, frame extraction, stereo rectification, and depth estimation.
+This project implements a complete stereo vision pipeline using OpenCV and Python. It includes camera calibration, stereo image rectification, disparity map generation, and interactive visualization of tuning parameters.
 
-## 📁 Contents
+## 📁 Files Overview
 
-- `cam_calibration.py`: Calibrates a single camera using chessboard patterns.
-- `extract frames.py`: Extracts frames from a stereo video sequence captured with stereo.py.
-- `stereo calibrate.py`: Calibrates a stereo camera setup.
-- `Stereo_Rectify.py`: Performs stereo image rectification to be used for exraction.
-- `stereo.py`: Stereo video capture and basic processing.
-- `stereo_estimation.py` / `stereo_estimation_2.py`: Computes disparity and depth maps (still working on these).
-- `stereo-processed-disparity.py`: Further processes and visualizes disparity maps it has sliders for all the paraeters which are used for calculation so that we can understand what parameters is affectiong which aspect of disparity.
-- `target.py`: excel generation script for chessboard corners.
-- `test.py`: For testing components or debugging jusr for some random codes.
+### Calibration Scripts
+- `cam_calibration.py`: Calibrates a single camera using chessboard images.
+- `stereo_calibrate.py`: Performs stereo calibration between left and right cameras.
+- `Stereo_Rectify.py`: Rectifies stereo image pairs using calibration data.
+- `target.py`: Exports detected chessboard corners to an Excel file.
+
+### Stereo Capture and Processing
+- `stereo.py`: Captures stereo video from dual cameras and saves as a video file.
+- `extract_frames.py`: Extracts left and right frames from saved stereo videos.
+- `stereo_estimation.py` / `stereo_estimation_2.py`: Computes disparity and depth maps (early versions).
+- `stereo-processed-disparity.py`: Interactive disparity map viewer with real-time parameter tuning.
+- `test.py`: Utility script for testing features individually.
+
+### 🔄 Pipeline Overview
+---------------------
+1.	Capture stereo video using `stereo.py`
+2.	Extract left/right frames using `extract_frames.py`
+3.	Calibrate cameras using `cam_calibration.py` and `stereo_calibrate.py`
+4.	Rectify frames using `Stereo_Rectify.py`
+5.	Estimate disparity map using `stereo-processed-disparity.py` or `stereo_estimation.py`
+
+   
+### 🖼️ Interactive Disparity Viewer
+-------------------------------
+Use `stereo-processed-disparity.py` to:
+  1. Load rectified grayscale images.
+  2. Preprocess images (bilateral filter, CLAHE, NLM, sharpening).
+  3. Adjust StereoSGBM parameters in real time.
+  4. View raw disparity and filtered outputs. 
+  
+### To run:
+
+python stereo-processed-disparity.py
+Edit the `left_path` and `right_path` variables in the script to use your own images.
 
 
-Sample Flow :
-Stereo video → Frame Extraction → Stereo Calibration → Rectification → Disparity → Depth Map
-
-Install dependencies:
 ## 🛠 Requirements
 
-- Python 3.10
+- Python 3.x
 - OpenCV (contrib version)
 - NumPy
 
@@ -29,10 +50,14 @@ Install dependencies:
 
 ```bash
 pip install opencv-contrib-python numpy
+```
 
 
+### 📌 Notes
 
+All disparity calculations require rectified grayscale stereo images.
+For calibration, use consistent chessboard patterns with accurate scaling.
 
-
-
-
+### License
+-------
+MIT License
